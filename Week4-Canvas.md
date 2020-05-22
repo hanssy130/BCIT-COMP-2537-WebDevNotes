@@ -63,6 +63,8 @@ window.onload = function() {
 }
 ```
 
+## Drawing
+
 ### ctx
 - 2D rendering context
 ```
@@ -81,11 +83,22 @@ ctx.strokeStyle = 'rgba(0, 255, 0, 0.5)';
 - Renering context always has a current plan
 - A new path should be created for each individual shape
 
+Functions:
 - `begin Path()` - Resets the current path
 - `closePath()` - Closes the current subpath and starts a new one
 - `moveTo(x,y)` - Creates a new subpath at the given point
 - `fill()` - Filsl the subpaths with the current fill style
 - `stroke()` - Outlines the subpaths with the current stroke style
+- `lineTo(x,y)` - Draws a straight line from previous point
+- `rect(x,y,w,h)` - Adds new closed rectangular subpath
+- `arc(x,y, radius, startAngle, endAngle, anticlockwise)` - Adds a subpath along the circumference of described circle, within the angles defined
+- `arc(x1,y1, x2, y2, radius)` - Adds subpath by conencting 2 points by an arc of the defined radius
+- `bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)` - cubic Bezier curve with the given control points
+- `quadraticCurveTo(cpx, cpy, x, y)` - Adds a quadratic Bezier curve with the given control points
+
+![Example 1](/resources/ex1.png)
+![Example 2](/resources/ex2.png)
+![Example 3](/resources/ex3.png)
 
 
 ```
@@ -103,6 +116,29 @@ ctx.strokeStyle = 'rgba(0, 255, 0, 0.5)';
   </div>
 ```
 
+### Images 
+```
+ctx.drawImage(image, dx, dy);
+ctx.drawImage(image, dx, dy, dw, dh);
+ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
+```
+- s = source
+- d = drawing
+
+```
+ctx.getImageData(sx, sy, sw, sh)
+```
+- Returns array of pixel values
+
+### Text
+```
+ctx.font="30px Monaco";
+ctx.fillStyle = "blue";
+ctx.textAlign = "center";
+ctx.fillText("HI BCIT", canvas.width/2, canvas.height/2);
+```
+
+### Code Example — Meme Generator
 ```
 <script>
     function textChangeListener (evt) {
